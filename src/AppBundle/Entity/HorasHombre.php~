@@ -1,0 +1,71 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * HorasHombre
+ *
+ * @ORM\Table(name="horas_hombre", indexes={@ORM\Index(name="IDX_854AA290F625D1BA", columns={"proyecto_id"})})
+ * @ORM\Entity
+ */
+class HorasHombre
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="hora", type="integer", nullable=false)
+     */
+    private $hora;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha", type="datetime", nullable=false)
+     */
+    private $fecha;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=255, nullable=true)
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tipo", type="string", length=255, nullable=true)
+     */
+    private $tipo;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dia", type="date", nullable=false)
+     */
+    private $dia;
+
+    /**
+     * @var \Proyectos
+     *
+     * @ORM\ManyToOne(targetEntity="Proyectos")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="proyecto_id", referencedColumnName="id")
+     * })
+     */
+    private $proyecto;
+
+
+}
+

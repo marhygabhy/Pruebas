@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Horashombres list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Hora</th>
+                <th>Fecha</th>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Dia</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for horasHombre in horasHombres %}
+            <tr>
+                <td><a href="{{ path('horashombre_show', { 'id': horasHombre.id }) }}">{{ horasHombre.id }}</a></td>
+                <td>{{ horasHombre.hora }}</td>
+                <td>{% if horasHombre.fecha %}{{ horasHombre.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ horasHombre.nombre }}</td>
+                <td>{{ horasHombre.tipo }}</td>
+                <td>{% if horasHombre.dia %}{{ horasHombre.dia|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('horashombre_show', { 'id': horasHombre.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('horashombre_edit', { 'id': horasHombre.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('horashombre_new') }}">Create a new horasHombre</a>
+        </li>
+    </ul>
+{% endblock %}

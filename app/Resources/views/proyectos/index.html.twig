@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Proyectos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Hora</th>
+                <th>Inicio</th>
+                <th>Fin</th>
+                <th>Agencia</th>
+                <th>Estatus</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for proyecto in proyectos %}
+            <tr>
+                <td><a href="{{ path('proyectos_show', { 'id': proyecto.id }) }}">{{ proyecto.id }}</a></td>
+                <td>{{ proyecto.nombre }}</td>
+                <td>{{ proyecto.hora }}</td>
+                <td>{% if proyecto.inicio %}{{ proyecto.inicio|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if proyecto.fin %}{{ proyecto.fin|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ proyecto.agencia }}</td>
+                <td>{{ proyecto.estatus }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('proyectos_show', { 'id': proyecto.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('proyectos_edit', { 'id': proyecto.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('proyectos_new') }}">Create a new proyecto</a>
+        </li>
+    </ul>
+{% endblock %}

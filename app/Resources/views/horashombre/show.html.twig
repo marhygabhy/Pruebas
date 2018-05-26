@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Horashombre</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ horasHombre.id }}</td>
+            </tr>
+            <tr>
+                <th>Hora</th>
+                <td>{{ horasHombre.hora }}</td>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <td>{% if horasHombre.fecha %}{{ horasHombre.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ horasHombre.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Tipo</th>
+                <td>{{ horasHombre.tipo }}</td>
+            </tr>
+            <tr>
+                <th>Dia</th>
+                <td>{% if horasHombre.dia %}{{ horasHombre.dia|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('horashombre_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('horashombre_edit', { 'id': horasHombre.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
